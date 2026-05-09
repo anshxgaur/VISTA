@@ -49,8 +49,6 @@ Backdated entry 4 for 2026-05-03
 Backdated entry 5 for 2026-05-03
 Backdated entry 6 for 2026-05-03
 Backdated entry 7 for 2026-05-03
-Backdated entry 8 for 2026-05-03
-Backdated entry 9 for 2026-05-03
 Backdated entry 10 for 2026-05-03
 Backdated entry 1 for 2026-05-01
 
