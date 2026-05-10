@@ -13,7 +13,7 @@
 
 In an era where healthcare data is growing exponentially, DAISY serves as a bridge between raw clinical data and actionable medical intelligence. By leveraging statistical analysis, exploratory data analysis (EDA), and machine learning, DAISY aims to assist healthcare professionals and administrators in making data-driven decisions.
 
----
+-----
 
 ## 🏥 Problem Statement
 The healthcare industry generates massive amounts of data daily—from patient electronic health records (EHR) to diagnostic imaging. However, this data is often underutilized due to its complexity. Key challenges include:
