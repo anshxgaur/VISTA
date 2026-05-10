@@ -24,7 +24,7 @@ The healthcare industry generates massive amounts of data daily—from patient e
 
 **DAISY** addresses these challenges by processing historical data to forecast future health events and trends.
 
------
+----
 
 ## 🎯 Project Objectives
 * **Disease Prediction:** Build models to predict the likelihood of chronic diseases (e.g., Diabetes, Heart Disease) based on clinical parameters.
