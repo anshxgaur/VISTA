@@ -4,7 +4,7 @@
 
 </p>
 
-# 🌼 DAISY – Data Analysis & Intelligence System (Healthcare Editions)
+# 🌼 DAISY – Data Analysis & Intelligence System (Healthcare Edition)
 
 > **"Transforming Patient Data into Lifesaving Insights"**
 
