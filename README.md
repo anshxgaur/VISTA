@@ -6,7 +6,7 @@
 
 # 🌼 DAISY – Data Analysis & Intelligence System (Healthcare Edition)
 
-> **"Transforming Patient Data into Lifesaving Insights"**
+> **"Transforming Patient Data into Lifesaving Insights"*
 
 ## 📌 Overview
 **DAISY (Data Analysis & Intelligence System)** is a comprehensive, end-to-end data science framework designed specifically for the **Healthcare Domain**. Its primary mission is to analyze complex medical datasets, uncover hidden epidemiological trends, and provide predictive insights that can improve patient outcomes and optimize hospital resource allocations.
