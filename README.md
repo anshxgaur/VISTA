@@ -26,7 +26,7 @@ The healthcare industry generates massive amounts of data daily—from patient e
 
 ---
 
-## 🎯 Project Objectives
+## 🎯 Project Objective
 * **Disease Prediction:** Build models to predict the likelihood of chronic diseases (e.g., Diabetes, Heart Disease) based on clinical parameters.
 * **Trend Analysis:** Analyze historical medical data to identify seasonal disease spikes and long-term health trends.
 * **Patient Risk Stratification:** Classify patients into risk groups (Low, Medium, High) to prioritize care.
@@ -35,7 +35,7 @@ The healthcare industry generates massive amounts of data daily—from patient e
 
 ---
 
-## 🧠 Key Features & Modules
+## 🧠 Key Features & Modules :
 
 ### 1. Data Ingestion & Cleaning Pipeline
 * Automated handling of missing clinical values (imputation based on medical norms).
@@ -58,7 +58,7 @@ The healthcare industry generates massive amounts of data daily—from patient e
 
 ---
 
-## 🗂 Dataset Details
+## 🗂 Dataset Details :
 **Source:** Kaggle / UCI Machine Learning Repository / MIMIC-III (Simulated)  
 **Primary Domain:** Healthcare & Clinical Records  
 
