@@ -1,116 +1,186 @@
-<p align="center">
+# 🩺 Vector-Based Intelligent Medical Data Lake
 
-  <img src="cool.png" alt="DAISY – Data Analysis & Intelligence System" width="900"/>
+### Using Cosine Similarity Clustering
 
-</p>
+A semantic healthcare data platform that organizes and retrieves medical reports based on **meaning**, not just keywords — using vector embeddings, cosine similarity, and a vector database.
 
-# 🌼 DAISY – Data Analysis & Intelligence System (Healthcare Edition)
-
-> **"Transforming Patient Data into Lifesaving Insights"**
-
-## 📌 Overview
-**DAISY (Data Analysis & Intelligence System)** is a comprehensive, end-to-end data science framework designed specifically for the **Healthcare Domain**. Its primary mission is to analyze complex medical datasets, uncover hidden epidemiological trends, and provide predictive insights that can improve patient outcomes and optimize hospital resource allocations.
-
-In an era where healthcare data is growing exponentially, DAISY serves as a bridge between raw clinical data and actionable medical intelligence. By leveraging statistical analysis, exploratory data analysis (EDA), and machine learning, DAISY aims to assist healthcare professionals and administrators in making data-driven decisions.
+![Domain](https://img.shields.io/badge/Domain-AI%2FML%20%7C%20Big%20Data-3B5BDB)
+![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
-## 🏥 Problem Statement
-The healthcare industry generates massive amounts of data daily—from patient electronic health records (EHR) to diagnostic imaging. However, this data is often underutilized due to its complexity. Key challenges include:
-* **Predicting Disease Outbreaks:** Early detection of rising cases.
-* **Patient Readmission:** Identifying high-risk patients likely to return to the hospital.
-* **Resource Management:** Predicting bed and staff requirements.
-* **Personalized Care:** Segmenting patients for targeted treatment plans.
+## 📌 Problem Statement
 
-**DAISY** addresses these challenges by processing historical data to forecast future health events and trends.
+Hospitals generate millions of medical reports every year — discharge summaries, lab results, radiology notes, and more. Traditional folder structures and keyword-based search make it difficult for clinicians to find semantically related reports, especially when terminology differs across departments (e.g., *"heart attack"* vs. *"myocardial infarction"*).
 
----
+This leads to:
+- 🔁 Duplicated documentation
+- ⏱️ Delayed diagnosis and slower case reviews
+- 📉 Inefficient clinical search
+- 📈 Increasing administrative burden as data grows
 
-## 🎯 Project Objective
-* **Disease Prediction:** Build models to predict the likelihood of chronic diseases (e.g., Diabetes, Heart Disease) based on clinical parameters.
-* **Trend Analysis:** Analyze historical medical data to identify seasonal disease spikes and long-term health trends.
-* **Patient Risk Stratification:** Classify patients into risk groups (Low, Medium, High) to prioritize care.
-* **Operational Efficiency:** Provide insights to reduce hospital wait times and optimize bed occupancy.
-* **Explainable AI:** Ensure that predictive insights are interpretable for medical staff.
+## 💡 Proposed Solution
+
+We built a platform that **understands the meaning** of medical text using transformer-based embeddings and **cosine similarity**, automatically clustering and retrieving reports that are semantically related — even when they don't share the same keywords.
 
 ---
 
-## 🧠 Key Features & Modules :
+## 🏗️ System Architecture
 
-### 1. Data Ingestion & Cleaning Pipeline
-* Automated handling of missing clinical values (imputation based on medical norms).
-* Standardization of medical units and terminologies.
-* Anonymization of PII (Personally Identifiable Information) to simulate HIPAA/GDPR compliance.
+![System Architecture](assets/architecture-diagram.svg)
 
-### 2. Exploratory Data Analysis (EDA)
-* **Demographic Analysis:** Distribution of age, gender, and location vs. disease prevalence.
-* **Correlation Mapping:** Identifying relationships between lifestyle factors (BMI, Smoking) and health outcomes.
-* **Geospatial Analysis:** (If applicable) Mapping disease hotspots.
+**Pipeline flow:**
 
-### 3. Predictive Modeling Engine
-* **Diagnosis Classification:** Logistic Regression/Random Forest models to detect presence of disease.
-* **Readmission Forecasting:** Predicting if a patient will return within 30 days.
-* **Survival Analysis:** Estimating recovery timeframes.
-
-### 4. Interactive Health Dashboard
-* Visualizing patient vitals and population health metrics in real-time.
-* Drill-down capabilities for specific demographics.
+1. **Data Ingestion** – Medical reports (PDF, scanned image, or text) enter the system.
+2. **OCR / Text Extraction** – Scanned documents are converted into raw text.
+3. **Embedding Generation** – A Sentence Transformer model converts each report into a high-dimensional vector.
+4. **Cosine Similarity Matching** – The new vector is compared against existing vectors in the database.
+5. **Vector Database Storage** – Vectors are indexed and stored in Qdrant/Milvus for fast retrieval.
+6. **Cluster Assignment** – The report is grouped into an existing cluster, or a new cluster is created.
+7. **Semantic Search** – A FastAPI backend exposes a natural-language search API over the vector index.
+8. **Dashboard** – A Streamlit/React interface lets clinicians search and browse clustered reports.
+9. **Metadata Storage** – PostgreSQL securely stores structured metadata alongside each vector.
 
 ---
 
-## 🗂 Dataset Details :
-**Source:** Kaggle / UCI Machine Learning Repository / MIMIC-III (Simulated)  
-**Primary Domain:** Healthcare & Clinical Records  
+## 🧮 How Cosine Similarity Works
 
-*We are utilizing large-scale anonymized healthcare datasets. Potential datasets include:*
-* **Heart Disease UCI:** Predicting presence of heart disease using indicators like cholesterol, resting BP, and max heart rate.
-* **Pima Indians Diabetes Database:** Predicting diabetes onset based on diagnostic measures.
-* **Hospital Readmission Data:** Historical records of diabetic patients to analyze readmission risks.
-* **COVID-19 Global Dataset:** For epidemiological trend analysis.
+![Cosine Similarity Explained](assets/cosine-similarity-diagram.svg)
 
----
+Cosine similarity measures the **angle** between two vectors rather than their raw distance — meaning two reports can be recognized as similar even if they're written very differently in wording or length.
 
-## 🛠️ Tech Stack
+```
+cos(θ) = (A · B) / (‖A‖ ‖B‖)
+```
 
-### Core Infrastructure
-* **Language:** Python 3.9+
-* **Environment:** Jupyter Notebooks / Anaconda
-
-### Data Manipulation & Analysis
-* **Pandas & NumPy:** For efficient handling of large clinical dataframes.
-* **SciPy:** For scientific computing and medical statistics.
-
-### Visualization
-* **Matplotlib & Seaborn:** Static statistical plots (Heatmaps, Distribution plots).
-* **Plotly / Streamlit:** Interactive dashboards for healthcare administrators.
-
-### Machine Learning
-* **Scikit-Learn:** Classification, Regression, and Clustering algorithms.
-* **XGBoost / LightGBM:** High-performance gradient boosting for prediction.
-* **Imbalanced-learn:** Handling class imbalance (common in medical datasets where positive cases are rare).
+| Score | Meaning |
+|-------|---------|
+| ≈ 1.0 | Reports mean nearly the same thing |
+| ≈ 0.0 | Reports are unrelated |
+| ≈ -1.0 | Reports are semantically opposite |
 
 ---
 
-## 📊 Expected Insights
-By the end of this project, DAISY will provide:
-1.  **Risk Factors:** Identification of the top 5 biomarkers contributing to heart failure in the dataset.
-2.  **Patient Segments:** Clustering of patients based on comorbidity profiles.
-3.  **Accuracy Metrics:** A predictive model with >85% recall (prioritizing minimizing False Negatives in medical diagnosis).
-4.  **Resource Forecast:** Prediction of peak admission periods to aid staffing.
+## ⚙️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| **Backend API** | Python, FastAPI |
+| **Embeddings** | Sentence Transformers |
+| **Vector Database** | Qdrant / Milvus |
+| **Metadata Storage** | PostgreSQL |
+| **Frontend / Dashboard** | Streamlit / React |
+| **Deployment** | Docker |
 
 ---
 
-## 🚀 Future Scope
-* **Deep Learning Integration:** Implementing CNNs for Medical Imaging analysis (X-Rays/MRI).
-* **NLP for Clinical Notes:** Using Natural Language Processing to extract insights from unstructured doctor's notes.
-* **Real-Time Monitoring:** API integration with IoT wearable devices for live patient tracking.
-* **EHR Integration:** Developing a pipeline to plug directly into hospital Electronic Health Record systems.
+## 📂 Dataset
+
+This project uses the **[MTSamples — Medical Transcriptions dataset](https://www.kaggle.com/datasets/tboyle10/medicaltranscriptions)**, a publicly available collection of ~5,000 de-identified medical transcription reports across 40 specialties (Cardiology, Neurology, Orthopedics, Radiology, etc.), scraped from mtsamples.com.
+
+> For future scale-up, the project can be extended to real ICU clinical data via **[MIMIC-III / MIMIC-IV](https://physionet.org/)** (requires PhysioNet credentialing and a data use agreement).
 
 ---
 
-## ⚙️ Installation & Usage
+## ✨ Key Features
 
-1. **Clone the Repository**
-   ```bash
-   git clone [https://github.com/AnshGaur/DAISY-Healthcare.git](https://github.com/AnshGaur/DAISY-Healthcare.git)
-   cd DAISY-Healthcare
+- 🔍 **Semantic search** — find reports by meaning, not exact keyword match
+- 🧩 **Self-organizing clustering** — new clusters form automatically as new medical themes emerge
+- ⚡ **Fast retrieval** — optimized vector indexing for millions of records
+- 🔐 **Secure metadata management** — structured data kept separate from vector index
+- 📊 **Interactive dashboard** — clinicians can query and browse results visually
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Python 3.10+
+- Docker (for running the vector database)
+- pip / virtualenv
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/<your-username>/vector-medical-data-lake.git
+cd vector-medical-data-lake
+
+# Create a virtual environment
+python -m venv venv
+source venv/bin/activate      # on Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Start the vector database (Qdrant)
+docker run -p 6333:6333 qdrant/qdrant
+
+# Run the backend
+uvicorn app.main:app --reload
+
+# Run the dashboard
+streamlit run dashboard/app.py
+```
+
+### Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+VECTOR_DB_HOST=localhost
+VECTOR_DB_PORT=6333
+POSTGRES_URL=postgresql://user:password@localhost:5432/medicaldb
+EMBEDDING_MODEL=all-MiniLM-L6-v2
+```
+
+---
+
+## 📁 Project Structure
+
+```
+vector-medical-data-lake/
+├── app/
+│   ├── main.py                # FastAPI entry point
+│   ├── ingestion/              # OCR & text extraction
+│   ├── embeddings/             # Embedding generation logic
+│   ├── similarity/             # Cosine similarity & clustering
+│   └── db/                     # Vector DB & PostgreSQL connectors
+├── dashboard/
+│   └── app.py                  # Streamlit/React dashboard
+├── data/
+│   └── mtsamples.csv           # Dataset
+├── assets/                     # Diagrams used in this README
+├── requirements.txt
+├── docker-compose.yml
+└── README.md
+```
+
+---
+
+## 🔮 Future Scope
+
+- 🔗 **RAG (Retrieval-Augmented Generation)** integration for AI-generated report summaries
+- 🖼️ **Multimodal embeddings** to include medical imaging (X-rays, scans) alongside text
+- 🌐 **Federated hospital search** across multiple institutions without centralizing sensitive data
+- 🤖 **AI-assisted diagnosis suggestions** based on clustered historical cases
+
+---
+
+## 👥 Team
+
+| Name | Role | Branch & Section |
+|---|---|---|
+| Ansh Gaur | Team Leader | CS DS 3 C |
+| Ankit Shukla | Member | CS DS 3 C |
+| Anant Dubey | Member | CS DS 3 C |
+| Aditi Shukla | Member | CS DS 3 B |
+| Aashita Mishra | Member | CS DS 3 B |
+| Arpit Umrao | Member | CS DS 3 A |
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
