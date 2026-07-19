@@ -1,4 +1,0 @@
-
-SELECT name, email 
-FROM customers 
-WHERE status = 'active';   
