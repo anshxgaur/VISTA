@@ -28,7 +28,7 @@ We built a platform that **understands the meaning** of medical text using trans
 
 ## 🏗️ System Architecture
 
-![System Architecture](assets/architecture-diagram.svg)
+![System Architecture](architecture-diagram.svg)
 
 **Pipeline flow:**
 
@@ -46,7 +46,7 @@ We built a platform that **understands the meaning** of medical text using trans
 
 ## 🧮 How Cosine Similarity Works
 
-![Cosine Similarity Explained](assets/cosine-similarity-diagram.svg)
+![Cosine Similarity Explained](cosine-similarity-diagram.svg)
 
 Cosine similarity measures the **angle** between two vectors rather than their raw distance — meaning two reports can be recognized as similar even if they're written very differently in wording or length.
 
@@ -151,7 +151,8 @@ vector-medical-data-lake/
 │   └── app.py                  # Streamlit/React dashboard
 ├── data/
 │   └── mtsamples.csv           # Dataset
-├── assets/                     # Diagrams used in this README
+├── architecture-diagram.svg    # System architecture diagram (used in README)
+├── cosine-similarity-diagram.svg  # Cosine similarity diagram (used in README)
 ├── requirements.txt
 ├── docker-compose.yml
 └── README.md
