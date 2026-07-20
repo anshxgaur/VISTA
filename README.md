@@ -216,29 +216,6 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 
 
-<p align="center">
-  <img src="timeline/schedule/hello.png" alt="VISTA Banner" width="100%">
-</p>
-
-<h1 align="center">VISTA</h1>
-
-<h3 align="center">
-Vector Intelligent Semantic Technology for Healthcare Analytics
-</h3>
-
-<p align="center">
-<b>Using Cosine Similarity Clustering</b>
-</p>
-
-<p align="center">
-A semantic healthcare data platform that organizes and retrieves medical reports based on <b>meaning</b>, not just keywords.
-</p>
-
-<p align="center">
-
-![Domain](https://img.shields.io/badge/Domain-AI%2FML%20%7C%20Big%20Data-3B5BDB)
-![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
-![License](https://img.shields.io/badge/License-MIT-green)
 
 </p>
 
@@ -577,61 +554,10 @@ VISTA
 
 ---
 
-# 👥 Team Structure
-
-<p align="center">
-<img src="timeline/team_structure.png" width="95%">
-</p>
-
-```mermaid
-flowchart TD
-
-    A["👨‍💻 Ansh Gaur<br><b>Project Lead & Data Engineer</b>"]
-
-    B["👩‍💻 Aashita Mishra<br><b>Data Ingestion Engineer</b>"]
-
-    C["👩‍💻 Aditi Sharma<br><b>Data Processing Engineer</b>"]
-
-    D["👨‍💻 Ankit Shukla<br><b>Database & Data Warehouse Engineer</b>"]
-
-    E["👨‍💻 Arpit Umrao<br><b>Semantic Search & Vector AI Engineer</b>"]
-
-    F["👨‍💼 Anant Dubey<br><b>Business Strategy & Product Engineer</b><br><i>(Tech + Business)</i>"]
-
-    A --> B
-    A --> C
-    A --> D
-    A --> E
-    A --> F
-
-    B --> G["Data Collection<br>Upload Pipeline<br>API Integration"]
-
-    C --> H["OCR<br>Cleaning<br>Metadata Extraction"]
-
-    D --> I["DuckDB<br>PostgreSQL<br>Qdrant"]
-
-    E --> J["Embeddings<br>Cosine Similarity<br>Semantic Search<br>Vector Retrieval"]
-
-    F --> K["Business Strategy<br>ROI Analysis<br>Product Growth<br>Testing & Demo"]
-```
 
 ---
 
-# 📄 License
 
-This project is licensed under the MIT License.
-
-See the **LICENSE** file for more details.
-
----
-
-# ⭐ Support the Project
-
-If you found this project useful, consider giving it a ⭐ on GitHub.
-
-It helps the project reach more developers and motivates our team to continue building open-source AI solutions.
-
----
 
 <div align="center">
 
