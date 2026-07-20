@@ -1,4 +1,4 @@
-# 🩺 Vector-Based Intelligent Medical Data Lake
+# 🩺 VISTA - VECTOR Intelligent Semantic Search Text Analysis
 
 ### Using Cosine Similarity Clustering
 
@@ -171,14 +171,14 @@ vector-medical-data-lake/
 
 ## 👥 Team
 
-| Name | Role | Branch & Section |
+| Name | Role | 
 |---|---|---|
-| Ansh Gaur | Team Leader | CS DS 3 C |
-| Ankit Shukla | Member | CS DS 3 C |
-| Anant Dubey | Member | CS DS 3 C |
-| Aditi Sharma | Member | CS DS 3 B |
-| Aashita Mishra | Member | CS DS 3 B |
-| Arpit Umrao | Member | CS DS 3 A |
+| Ansh Gaur | Project Lead & Data Engineer |
+| Ankit Shukla |Database & Data Warehouse Engineer |
+| Anant Dubey | Business Strategy & Product Engineer (Tech + Business) 
+| Aditi Sharma | Data Processing Engineer 
+| Aashita Mishra | Data Ingestion Engineer 
+| Arpit Umrao | Semantic Search & Vector AI Engineer
 
 ---
 
