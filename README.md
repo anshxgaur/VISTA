@@ -176,7 +176,7 @@ vector-medical-data-lake/
 | Ansh Gaur | Team Leader | CS DS 3 C |
 | Ankit Shukla | Member | CS DS 3 C |
 | Anant Dubey | Member | CS DS 3 C |
-| Aditi Shukla | Member | CS DS 3 B |
+| Aditi Sharma | Member | CS DS 3 B |
 | Aashita Mishra | Member | CS DS 3 B |
 | Arpit Umrao | Member | CS DS 3 A |
 
