@@ -1,7 +1,6 @@
 <p align="center">
   <img src="timeline/schedule/hello.png" alt="VISTA " width="100%">
 </p>
-#🩺 VISTA - VECTOR Intelligent Semantic Search Text Analysis
 
 ### Using Cosine Similarity Clustering
 
