@@ -195,7 +195,7 @@ flowchart TD
 ## Timeline
 <p align="center">
   <img src="<p align="center">
-  <img src="timeline/schedule/hello.png" alt="VISTA" width="100%">
+  <img src="timeline/schedule/ChatGPT Image Jul 20, 2026, 02_14_43 PM.png" alt="VISTA" width="100%">
 </p>" alt="VISTA" width="100%">
 </p>
 
