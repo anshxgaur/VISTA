@@ -174,15 +174,39 @@ vector-medical-data-lake/
 
 ## 👥 Team
 
-| Name | Role | 
-|---|---|---|
-| Ansh Gaur | Project Lead & Data Engineer |
-| Ankit Shukla |Database & Data Warehouse Engineer |
-| Anant Dubey | Business Strategy & Product Engineer (Tech + Business) 
-| Aditi Sharma | Data Processing Engineer 
-| Aashita Mishra | Data Ingestion Engineer 
-| Arpit Umrao | Semantic Search & Vector AI Engineer
+## 👥 Team Structure
 
+```mermaid
+flowchart TD
+
+    A["👨‍💻 Ansh Gaur<br><b>Project Lead & Data Engineer</b>"]
+
+    B["👩‍💻 Aashita Mishra<br><b>Data Ingestion Engineer</b>"]
+
+    C["👩‍💻 Aditi Sharma<br><b>Data Processing Engineer</b>"]
+
+    D["👨‍💻 Ankit Shukla<br><b>Database & Data Warehouse Engineer</b>"]
+
+    E["👨‍💻 Arpit Umrao<br><b>Semantic Search & Vector AI Engineer</b>"]
+
+    F["👨‍💼 Anant Dubey<br><b>Business Strategy & Product Engineer</b><br><i>(Tech + Business)</i>"]
+
+    A --> B
+    A --> C
+    A --> D
+    A --> E
+    A --> F
+
+    B --> G["Data Collection<br>Upload Pipeline<br>API Integration"]
+
+    C --> H["OCR<br>Cleaning<br>Metadata Extraction"]
+
+    D --> I["DuckDB<br>PostgreSQL<br>MinIO"]
+
+    E --> J["Embeddings<br>Cosine Similarity<br>Semantic Search<br>FAISS"]
+
+    F --> K["Business Strategy<br>ROI Analysis<br>Product Growth<br>Testing & Demo"]
+```
 ---
 
 ## 📄 License
