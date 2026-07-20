@@ -187,8 +187,17 @@ flowchart TD
     E --> J["Embeddings<br>Cosine Similarity<br>Semantic Search<br>FAISS"]
     F --> K["Business Strategy<br>ROI Analysis<br>Product Growth<br>Testing & Demo"]
 ```
+<p align="center">
+  <img src="timeline/schedule/ChatGPT Image Jul 20, 2026, 02_15_58 PM.png" alt="VISTA" width="100%">
+</p>
 
 ---
+## Timeline
+<p align="center">
+  <img src="<p align="center">
+  <img src="timeline/schedule/hello.png" alt="VISTA" width="100%">
+</p>" alt="VISTA" width="100%">
+</p>
 
 ## 🚀 Getting Started
 
