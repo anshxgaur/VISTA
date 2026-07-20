@@ -188,14 +188,14 @@ flowchart TD
     F --> K["Business Strategy<br>ROI Analysis<br>Product Growth<br>Testing & Demo"]
 ```
 <p align="center">
-  <img src="timeline/schedule/ChatGPT Image Jul 20, 2026, 02_14_43 PM.png" alt="VISTA" width="100%">
+  <img src="timeline/schedule/ChatGPT Image Jul 20, 2026, 02_14_43 PM.png" width="75%">
 </p>
 
 ---
 ## Timeline
 <p align="center">
   <img src="<p align="center">
-  <img src="timeline/schedule/ChatGPT Image Jul 20, 2026, 02_15_58 PM.png" alt="VISTA" width="100%">
+  <img src="timeline/schedule/ChatGPT Image Jul 20, 2026, 02_15_58 PM.png" width="75%">
 </p>" alt="VISTA" width="100%">
 </p>
 
