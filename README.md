@@ -1,4 +1,7 @@
-# 🩺 VISTA - VECTOR Intelligent Semantic Search Text Analysis(timeline/schedule/Gemini_Generated_Image_pyalwqpyalwqpyal.png)
+<p align="center">
+  <img src="timeline/schedule/github-banner.png" alt="VISTA Banner" width="100%">
+</p>
+#🩺 VISTA - VECTOR Intelligent Semantic Search Text Analysis
 
 ### Using Cosine Similarity Clustering
 
