@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="hello.png" alt="VISTA " width="100%">
+  <img src="timeline/schedule/hello.png" alt="VISTA " width="100%">
 </p>
 #🩺 VISTA - VECTOR Intelligent Semantic Search Text Analysis
 
