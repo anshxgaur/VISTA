@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="timeline/schedule/Gemini_Generated_Image_pyalwqpyalwqpyal.png" alt="VISTA " width="100%">
+  <img src="hello.png" width="100%">
 </p>
 #🩺 VISTA - VECTOR Intelligent Semantic Search Text Analysis
 
