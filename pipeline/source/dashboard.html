@@ -2,222 +2,425 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Vista Neural Data Stream</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista Isometric Neural Data Conduit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #030712;
-            --card-bg: #0b1329;
-            --cyan-glow: #06b6d4;
-            --blue-glow: #3b82f6;
-            --green-glow: #10b981;
-            --yellow-glow: #eab308;
+            --bg-dark: #030712;
+            --amber-primary: #f97316;
+            --amber-glow: rgba(249, 115, 22, 0.6);
+            --cyan-primary: #06b6d4;
+            --cyan-glow: rgba(6, 182, 212, 0.6);
+            --green-primary: #10b981;
+            --green-glow: rgba(16, 185, 129, 0.6);
+            --purple-primary: #8b5cf6;
+            --card-bg: rgba(15, 23, 42, 0.82);
+            --border-glow: rgba(51, 65, 85, 0.6);
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Rajdhani', sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--bg-dark);
             background-image: 
-                radial-gradient(circle at 50% 10%, rgba(6, 182, 212, 0.2) 0%, transparent 60%),
+                radial-gradient(circle at 15% 30%, rgba(249, 115, 22, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 85% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
                 linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 100% 100%, 25px 25px, 25px 25px;
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
             color: #f8fafc;
-            padding: 40px;
-            margin: 0;
+            min-height: 100vh;
+            padding: 30px;
+            overflow-x: hidden;
+        }
+
+        /* Top Header HUD */
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
         }
 
         .header-title {
             font-family: 'Orbitron', sans-serif;
-            text-align: center;
-            font-size: 2rem;
-            letter-spacing: 6px;
-            color: #ffffff;
-            text-shadow: 0 0 15px var(--cyan-glow), 0 0 30px var(--cyan-glow);
-            margin-bottom: 40px;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: linear-gradient(90deg, var(--amber-primary), var(--cyan-primary), var(--green-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .system-status-pill {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--cyan-primary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            color: var(--cyan-primary);
+            box-shadow: 0 0 15px var(--cyan-glow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--green-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--green-primary);
+            animation: pulseDot 1.2s infinite alternate;
+        }
+
+        /* Active Pipeline Cards Grid */
+        #pipeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
         }
 
         .pipeline-card {
             background: var(--card-bg);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(6, 182, 212, 0.05);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 30px;
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 2px rgba(255, 255, 255, 0.2);
+            position: relative;
         }
 
-        .file-meta {
+        .card-header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 10px;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
         }
 
-        /* Continuous Pipeline Layout */
-        .pipeline-track {
+        .file-badge {
+            color: var(--amber-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 1px;
+        }
+
+        /* Pipeline Flow Arena */
+        .conduit-arena {
+            position: relative;
+            width: 100%;
+            height: 240px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: relative;
-            padding: 10px 0;
         }
 
-        /* Node Box */
-        .node {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 120px;
-            height: 60px;
-            border-radius: 8px;
-            background: #020617;
-            border: 2px solid #1e293b;
-            color: #475569;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-align: center;
-            text-transform: uppercase;
-            position: relative;
-            z-index: 2;
-            transition: all 0.3s ease;
-        }
-
-        /* Node Active State - Intense Glow */
-        .node.active {
-            border-color: var(--cyan-glow);
-            color: #ffffff;
-            background: rgba(6, 182, 212, 0.2);
-            box-shadow: 0 0 20px var(--cyan-glow), inset 0 0 10px var(--cyan-glow);
-            animation: nodePulse 1s infinite alternate;
-        }
-
-        .node.completed {
-            border-color: var(--green-glow);
-            color: #ffffff;
-            background: rgba(16, 185, 129, 0.15);
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
-        }
-
-        .node.skipped {
-            border-color: var(--yellow-glow);
-            color: #ffffff;
-            background: rgba(234, 179, 8, 0.2);
-            box-shadow: 0 0 15px var(--yellow-glow);
-        }
-
-        /* Laser Wire Pipe */
-        .conduit {
-            flex-grow: 1;
-            height: 6px;
-            background: #0f172a;
-            position: relative;
-            margin: 0 -2px;
-            z-index: 1;
-            overflow: hidden;
-            border-radius: 3px;
-            border: 1px solid #1e293b;
-        }
-
-        /* Completed Wire - Permanent Glow Line */
-        .conduit.completed {
-            background: var(--green-glow);
-            box-shadow: 0 0 10px var(--green-glow);
-            border-color: var(--green-glow);
-        }
-
-        /* Active Transfer Wire - Laser Light Bullet Stream */
-        .conduit.active::after {
-            content: '';
+        /* SVG Glass Pipeline Layer */
+        .pipeline-svg-layer {
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, var(--cyan-glow), #ffffff, var(--cyan-glow), transparent);
-            animation: transferData 0.8s infinite linear;
-            box-shadow: 0 0 12px var(--cyan-glow);
+            z-index: 1;
+            pointer-events: none;
         }
 
-        @keyframes transferData {
-            0% { left: -100%; }
-            100% { left: 100%; }
+        /* Flowing Light Pulses Inside Glass Tube */
+        .laser-conduit-path {
+            fill: none;
+            stroke: rgba(30, 41, 59, 0.8);
+            stroke-width: 16;
+            stroke-linecap: round;
+        }
+
+        .laser-conduit-glass {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.15);
+            stroke-width: 20;
+            stroke-linecap: round;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
+        }
+
+        .laser-conduit-active {
+            fill: none;
+            stroke-width: 10;
+            stroke-linecap: round;
+            stroke-dasharray: 20 80;
+            animation: flowDataPackets 1.5s linear infinite;
+        }
+
+        /* Nodes along the conduit */
+        .node-hub {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 130px;
+        }
+
+        .node-box {
+            width: 110px;
+            height: 75px;
+            background: #090d16;
+            border: 2px solid #1e293b;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+        }
+
+        .node-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .node-icon {
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+        }
+
+        .node-status-sub {
+            font-size: 0.65rem;
+            font-family: 'Fira Code', monospace;
+            color: #475569;
+        }
+
+        /* Stage-Specific Glowing States */
+        /* Phase 1: Ingestion & SHA (Amber/Orange) */
+        .node-hub[data-stage="0"].active .node-box, 
+        .node-hub[data-stage="1"].active .node-box,
+        .node-hub[data-stage="0"].completed .node-box, 
+        .node-hub[data-stage="1"].completed .node-box {
+            border-color: var(--amber-primary);
+            background: rgba(249, 115, 22, 0.15);
+            box-shadow: 0 0 25px var(--amber-glow), inset 0 0 12px var(--amber-glow);
+            color: #fff;
+        }
+
+        /* Phase 2: OCR & PII (Cyan/Teal) */
+        .node-hub[data-stage="2"].active .node-box, 
+        .node-hub[data-stage="3"].active .node-box,
+        .node-hub[data-stage="2"].completed .node-box, 
+        .node-hub[data-stage="3"].completed .node-box {
+            border-color: var(--cyan-primary);
+            background: rgba(6, 182, 212, 0.15);
+            box-shadow: 0 0 25px var(--cyan-glow), inset 0 0 12px var(--cyan-glow);
+            color: #fff;
+        }
+
+        /* Phase 3: Standardize & Embeddings (Emerald/Green) */
+        .node-hub[data-stage="4"].active .node-box, 
+        .node-hub[data-stage="5"].active .node-box,
+        .node-hub[data-stage="4"].completed .node-box, 
+        .node-hub[data-stage="5"].completed .node-box {
+            border-color: var(--green-primary);
+            background: rgba(16, 185, 129, 0.15);
+            box-shadow: 0 0 25px var(--green-glow), inset 0 0 12px var(--green-glow);
+            color: #fff;
+        }
+
+        .node-box.active-pulse {
+            animation: nodePulse 1s infinite alternate ease-in-out;
+        }
+
+        /* Snippet Inspection Drawer */
+        .telemetry-drawer {
+            margin-top: 20px;
+            background: rgba(3, 7, 18, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px 18px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            display: flex;
+            gap: 20px;
+        }
+
+        .drawer-section {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .drawer-label {
+            color: var(--cyan-primary);
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        @keyframes flowDataPackets {
+            0% { stroke-dashoffset: 200; }
+            100% { stroke-dashoffset: 0; }
         }
 
         @keyframes nodePulse {
-            0% { transform: scale(1); box-shadow: 0 0 10px var(--cyan-glow); }
-            100% { transform: scale(1.05); box-shadow: 0 0 25px var(--cyan-glow), 0 0 5px #ffffff; }
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+
+        @keyframes pulseDot {
+            0% { opacity: 0.4; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-    <div class="header-title">⚡ VISTA PIPELINE STREAM ⚡</div>
-    <div id="pipeline-list">Connecting to Pipeline Telemetry...</div>
+    <div class="header-bar">
+        <div class="header-title">⚡ VISTA COMPREHENSIVE CONDUIT FLOW ⚡</div>
+        <div class="system-status-pill">
+            <div class="status-dot"></div>
+            <span>LIVE TELEMETRY STREAM</span>
+        </div>
+    </div>
+
+    <div id="pipeline-container">
+        <div style="text-align: center; color: #64748b; padding: 50px;">
+            Connecting to Neural Data Stream...
+        </div>
+    </div>
 
     <script>
-        const STEPS = ["Ingestion", "SHA256 Check", "OCR Engine", "PII Masking", "Standardize", "Embeddings"];
+        const STEPS = [
+            { name: "Ingestion", icon: "📥", desc: "MinIO Stream" },
+            { name: "SHA256 Check", icon: "🛡️", desc: "Hash Verifier" },
+            { name: "OCR Engine", icon: "👁️", desc: "Tesseract Vision" },
+            { name: "PII Masking", icon: "🔒", desc: "spaCy Redactor" },
+            { name: "Standardize", icon: "⚙️", desc: "Schema Align" },
+            { name: "Embeddings", icon: "🧠", desc: "Vector Matrix" }
+        ];
 
         async function fetchStatus() {
             try {
-                const res = await fetch('/api/pipeline-status');
+                // Prevent browser HTTP GET caching using timestamp parameter and strict headers
+                const res = await fetch(`/api/pipeline-status?t=${Date.now()}`, {
+                    cache: 'no-store',
+                    headers: {
+                        'Pragma': 'no-cache',
+                        'Cache-Control': 'no-cache'
+                    }
+                });
                 const data = await res.json();
-                const container = document.getElementById('pipeline-list');
-                
-                if (data.length === 0) {
-                    container.innerHTML = '<div class="pipeline-card" style="text-align:center;">Awaiting data stream... Upload a report via /docs</div>';
+                const container = document.getElementById('pipeline-container');
+
+                if (!data || data.length === 0) {
+                    container.innerHTML = `
+                        <div class="pipeline-card" style="text-align:center; color:#64748b; padding: 40px;">
+                            Awaiting incoming file streams... Upload a medical report via <a href="/docs" style="color:var(--cyan-primary);">/docs</a>
+                        </div>`;
                     return;
                 }
 
-                container.innerHTML = data.map(item => `
-                    <div class="pipeline-card">
-                        <div class="file-meta">
-                            <span style="color:var(--cyan-glow);">📄 FILE: ${item.file_name}</span>
-                            <span style="color: ${getStatusColor(item.status)};">[ ${item.status} ]</span>
-                        </div>
-                        <div class="pipeline-track">
-                            ${renderNodes(item)}
-                        </div>
-                    </div>
-                `).join('');
+                container.innerHTML = data.map(item => renderPipelineCard(item)).join('');
             } catch (err) {
-                console.error("Telemetry error", err);
+                console.error("Telemetry Link Failure:", err);
             }
         }
 
-        function renderNodes(item) {
-            return STEPS.map((step, idx) => {
-                let nodeClass = "node";
-                let conduitClass = "conduit";
+        function renderPipelineCard(item) {
+            const currentStepIdx = STEPS.findIndex(s => s.name === item.current_step);
+            
+            // Dynamic Conduit Color based on current stage
+            let laserColor = "var(--amber-primary)";
+            if (currentStepIdx >= 2 && currentStepIdx <= 3) laserColor = "var(--cyan-primary)";
+            if (currentStepIdx >= 4 || item.status === "COMPLETED") laserColor = "var(--green-primary)";
+            if (item.status === "SKIPPED_DUPLICATE") laserColor = "#f59e0b";
 
-                const currentStepIdx = STEPS.indexOf(item.current_step);
-
-                if (item.status === "SKIPPED_DUPLICATE" && step === "SHA256 Check") {
-                    nodeClass += " skipped";
-                } else if (idx < currentStepIdx || item.status === "COMPLETED") {
-                    nodeClass += " completed";
-                    conduitClass += " completed";
-                } else if (idx === currentStepIdx) {
-                    nodeClass += " active";
-                    conduitClass += " active";
-                }
-
-                return `
-                    <div class="${nodeClass}">
-                        <span>${step}</span>
+            return `
+                <div class="pipeline-card">
+                    <div class="card-header">
+                        <div class="file-badge">
+                            <span>📄 FILE:</span>
+                            <span style="color:#ffffff;">${item.file_name}</span>
+                        </div>
+                        <div style="color: ${getStatusColor(item.status)}; font-family:'Fira Code', monospace;">
+                            [ ${item.status} ] - ${item.created_at}
+                        </div>
                     </div>
-                    ${idx < STEPS.length - 1 ? `<div class="${conduitClass}"></div>` : ''}
-                `;
-            }).join('');
+
+                    <div class="conduit-arena">
+                        <!-- Glass Tube Background & Active Pulse Beam Layer -->
+                        <svg class="pipeline-svg-layer" viewBox="0 0 1000 120" preserveAspectRatio="none">
+                            <!-- Outer Glass Tube -->
+                            <path d="M 50 60 L 950 60" class="laser-conduit-glass" />
+                            <!-- Inner Dark Core -->
+                            <path d="M 50 60 L 950 60" class="laser-conduit-path" />
+                            <!-- Glowing Active Flow Line -->
+                            <path d="M 50 60 L 950 60" class="laser-conduit-active" style="stroke: ${laserColor}; filter: drop-shadow(0 0 10px ${laserColor});" />
+                        </svg>
+
+                        <!-- Interactive Nodes -->
+                        ${STEPS.map((step, idx) => {
+                            let statusClass = "";
+                            let subText = step.desc;
+
+                            if (item.status === "SKIPPED_DUPLICATE" && step.name === "SHA256 Check") {
+                                statusClass = "completed";
+                                subText = "DUPLICATE";
+                            } else if (idx < currentStepIdx || item.status === "COMPLETED") {
+                                statusClass = "completed";
+                                subText = "DONE";
+                            } else if (idx === currentStepIdx && item.status === "PROCESSING") {
+                                statusClass = "active active-pulse";
+                                subText = "PROCESSING";
+                            }
+
+                            return `
+                                <div class="node-hub ${statusClass}" data-stage="${idx}">
+                                    <div class="node-box">
+                                        <div class="node-icon">${step.icon}</div>
+                                        <div class="node-title">${step.name}</div>
+                                        <div class="node-status-sub">${subText}</div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+
+                    <!-- Telemetry Data Snippet Footer -->
+                    <div class="telemetry-drawer">
+                        <div class="drawer-section">
+                            <span class="drawer-label">RAW OCR:</span>
+                            <span>${item.raw_snippet ? item.raw_snippet : 'Awaiting extraction...'}</span>
+                        </div>
+                        <div class="drawer-section" style="border-left: 1px solid rgba(255,255,255,0.1); padding-left: 15px;">
+                            <span class="drawer-label" style="color:var(--green-primary);">SANITY MASK:</span>
+                            <span>${item.masked_snippet ? item.masked_snippet : 'Awaiting redaction...'}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
 
         function getStatusColor(status) {
-            if (status === 'COMPLETED') return '#10b981';
-            if (status === 'SKIPPED_DUPLICATE') return '#eab308';
+            if (status === 'COMPLETED') return 'var(--green-primary)';
+            if (status === 'SKIPPED_DUPLICATE') return '#f59e0b';
             if (status === 'FAILED') return '#ef4444';
-            return '#06b6d4';
+            return 'var(--cyan-primary)';
         }
 
         setInterval(fetchStatus, 1000);
