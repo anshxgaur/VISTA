@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+boto3
+python-multipart
+pillow
+pytesseract
+pdf2image
+spacy
