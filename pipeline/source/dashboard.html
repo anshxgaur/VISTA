@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vista Neural Data Stream</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #030712;
+            --card-bg: #0b1329;
+            --cyan-glow: #06b6d4;
+            --blue-glow: #3b82f6;
+            --green-glow: #10b981;
+            --yellow-glow: #eab308;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 50% 10%, rgba(6, 182, 212, 0.2) 0%, transparent 60%),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 25px 25px, 25px 25px;
+            color: #f8fafc;
+            padding: 40px;
+            margin: 0;
+        }
+
+        .header-title {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            font-size: 2rem;
+            letter-spacing: 6px;
+            color: #ffffff;
+            text-shadow: 0 0 15px var(--cyan-glow), 0 0 30px var(--cyan-glow);
+            margin-bottom: 40px;
+        }
+
+        .pipeline-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(6, 182, 212, 0.05);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .file-meta {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        /* Continuous Pipeline Layout */
+        .pipeline-track {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        /* Node Box */
+        .node {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 60px;
+            border-radius: 8px;
+            background: #020617;
+            border: 2px solid #1e293b;
+            color: #475569;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-align: center;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        /* Node Active State - Intense Glow */
+        .node.active {
+            border-color: var(--cyan-glow);
+            color: #ffffff;
+            background: rgba(6, 182, 212, 0.2);
+            box-shadow: 0 0 20px var(--cyan-glow), inset 0 0 10px var(--cyan-glow);
+            animation: nodePulse 1s infinite alternate;
+        }
+
+        .node.completed {
+            border-color: var(--green-glow);
+            color: #ffffff;
+            background: rgba(16, 185, 129, 0.15);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+        }
+
+        .node.skipped {
+            border-color: var(--yellow-glow);
+            color: #ffffff;
+            background: rgba(234, 179, 8, 0.2);
+            box-shadow: 0 0 15px var(--yellow-glow);
+        }
+
+        /* Laser Wire Pipe */
+        .conduit {
+            flex-grow: 1;
+            height: 6px;
+            background: #0f172a;
+            position: relative;
+            margin: 0 -2px;
+            z-index: 1;
+            overflow: hidden;
+            border-radius: 3px;
+            border: 1px solid #1e293b;
+        }
+
+        /* Completed Wire - Permanent Glow Line */
+        .conduit.completed {
+            background: var(--green-glow);
+            box-shadow: 0 0 10px var(--green-glow);
+            border-color: var(--green-glow);
+        }
+
+        /* Active Transfer Wire - Laser Light Bullet Stream */
+        .conduit.active::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--cyan-glow), #ffffff, var(--cyan-glow), transparent);
+            animation: transferData 0.8s infinite linear;
+            box-shadow: 0 0 12px var(--cyan-glow);
+        }
+
+        @keyframes transferData {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes nodePulse {
+            0% { transform: scale(1); box-shadow: 0 0 10px var(--cyan-glow); }
+            100% { transform: scale(1.05); box-shadow: 0 0 25px var(--cyan-glow), 0 0 5px #ffffff; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-title">⚡ VISTA PIPELINE STREAM ⚡</div>
+    <div id="pipeline-list">Connecting to Pipeline Telemetry...</div>
+
+    <script>
+        const STEPS = ["Ingestion", "SHA256 Check", "OCR Engine", "PII Masking", "Standardize", "Embeddings"];
+
+        async function fetchStatus() {
+            try {
+                const res = await fetch('/api/pipeline-status');
+                const data = await res.json();
+                const container = document.getElementById('pipeline-list');
+                
+                if (data.length === 0) {
+                    container.innerHTML = '<div class="pipeline-card" style="text-align:center;">Awaiting data stream... Upload a report via /docs</div>';
+                    return;
+                }
+
+                container.innerHTML = data.map(item => `
+                    <div class="pipeline-card">
+                        <div class="file-meta">
+                            <span style="color:var(--cyan-glow);">📄 FILE: ${item.file_name}</span>
+                            <span style="color: ${getStatusColor(item.status)};">[ ${item.status} ]</span>
+                        </div>
+                        <div class="pipeline-track">
+                            ${renderNodes(item)}
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                console.error("Telemetry error", err);
+            }
+        }
+
+        function renderNodes(item) {
+            return STEPS.map((step, idx) => {
+                let nodeClass = "node";
+                let conduitClass = "conduit";
+
+                const currentStepIdx = STEPS.indexOf(item.current_step);
+
+                if (item.status === "SKIPPED_DUPLICATE" && step === "SHA256 Check") {
+                    nodeClass += " skipped";
+                } else if (idx < currentStepIdx || item.status === "COMPLETED") {
+                    nodeClass += " completed";
+                    conduitClass += " completed";
+                } else if (idx === currentStepIdx) {
+                    nodeClass += " active";
+                    conduitClass += " active";
+                }
+
+                return `
+                    <div class="${nodeClass}">
+                        <span>${step}</span>
+                    </div>
+                    ${idx < STEPS.length - 1 ? `<div class="${conduitClass}"></div>` : ''}
+                `;
+            }).join('');
+        }
+
+        function getStatusColor(status) {
+            if (status === 'COMPLETED') return '#10b981';
+            if (status === 'SKIPPED_DUPLICATE') return '#eab308';
+            if (status === 'FAILED') return '#ef4444';
+            return '#06b6d4';
+        }
+
+        setInterval(fetchStatus, 1000);
+        fetchStatus();
+    </script>
+</body>
+</html>
