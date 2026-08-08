@@ -5,7 +5,7 @@ This is a simple, no-jargon explanation of the project so everyone knows what th
 ## The Big Picture
 
 <p align="center">
-  <img src="info/architecture.png" width="100%" alt="VISTA Architecture">
+  <img src="Team/data/architecture.png" width="100%" alt="VISTA Architecture">
 </p>
 
 We're building a smart search system for medical reports. A doctor types something like "blood reports," and instead of the system searching through every single file one by one (slow and expensive), we first sort all files into labeled **boxes** (like "Blood Reports," "X-Ray Reports," "Prescriptions"). The system finds the right **box** first, then picks the best file inside that box based on how recent it is, how often it's been opened, and how important it is.
