@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="timeline/schedule/hello.png" alt="VISTA" width="100%">
+  <img src="info/hello.png" alt="VISTA" width="100%">
 </p>
 
 <h1 align="center">VISTA: Vector Intelligent Semantic Search Text Analysis</h1>
@@ -80,7 +80,7 @@ Doctor ──> Natural Language Query ──> Query Embedding ──> FAISS Box 
 ## 🏗️ System Architecture & Workflow
 
 <p align="center">
-  <img src="timeline/schedule/architecture.png" width="100%" alt="VISTA Box-Clustering Semantic Search Architecture">
+  <img src="info/architecture.png" width="100%" alt="VISTA Box-Clustering Semantic Search Architecture">
 </p>
 
 **The box-clustering pipeline:**
@@ -114,7 +114,7 @@ Doctor ──> Natural Language Query ──> Query Embedding ──> FAISS Box 
 ## 🧮 How Cosine Similarity Works
 
 <p align="center">
-  <img src="cosine-similarity-diagram.svg" width="90%" alt="Cosine Similarity Vector Space">
+  <img src="info/cosine-similarity-diagram.svg" width="90%" alt="Cosine Similarity Vector Space">
 </p>
 
 Instead of raw coordinate distance — which biases toward document length — cosine similarity calculates the geometric angle (θ) between two high-dimensional text vectors:
@@ -210,14 +210,11 @@ flowchart TD
     A --> L["K-Means Boxes<br>Box Summaries + Embeddings<br>FAISS Index"]
 ```
 
-<p align="center">
-  <img src="timeline/schedule/roadmap.png" width="90%" alt="VISTA Project Roadmap">
-</p>
 
 ---
 ## Timeline
 <p align="center">
-  <img src="timeline/schedule/ChatGPT Image Jul 20, 2026, 02_15_58 PM.png" alt="VISTA Timeline" width="100%">
+  <img src="info/roadmap.png" alt="VISTA Timeline" width="100%">
 </p>
 
 ---
