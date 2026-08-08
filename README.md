@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <a href="./DOCUMENTATION.md">
+  <a href="info/DOCUMENTATION.md">
     <img src="https://img.shields.io/badge/📖_FULL_DOCUMENTATION-View_Now-2962FF?style=for-the-badge&labelColor=1a1a1a" alt="View Full Documentation">
   </a>
 </p>
@@ -271,7 +271,7 @@ FAISS_INDEX_PATH=./data/box_index.faiss
 Every layer of VISTA — the ETL/OCR ingestion pipeline, the embedding model and why it was chosen, cosine similarity math, K-Means box-clustering methodology, the FAISS box-index design, the priority scoring formula, the MinIO/Neon storage split, an evaluation methodology, and known limitations — is covered in full in **[`DOCUMENTATION.md`](./DOCUMENTATION.md)**.
 
 <p align="center">
-  <a href="./DOCUMENTATION.md">
+  <a href="info/DOCUMENTATION.md">
     <img src="https://img.shields.io/badge/📖_Open_Full_Documentation-2962FF?style=for-the-badge&labelColor=1a1a1a" alt="Open Full Documentation">
   </a>
 </p>
