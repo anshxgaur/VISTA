@@ -5,7 +5,7 @@ This is a simple, no-jargon explanation of the project so everyone knows what th
 ## The Big Picture
 
 <p align="center">
-  <img src="timeline/schedule/architecture.png" width="100%" alt="VISTA Architecture">
+  <img src="info/architecture.png" width="100%" alt="VISTA Architecture">
 </p>
 
 We're building a smart search system for medical reports. A doctor types something like "blood reports," and instead of the system searching through every single file one by one (slow and expensive), we first sort all files into labeled **boxes** (like "Blood Reports," "X-Ray Reports," "Prescriptions"). The system finds the right **box** first, then picks the best file inside that box based on how recent it is, how often it's been opened, and how important it is.
@@ -17,7 +17,7 @@ Think of it like a warehouse: instead of searching every item on every shelf, yo
 ## Aashita — Cleaning the Files (ETL)
 
 <p align="center">
-  <img src="timeline/schedule/aashita.png" width="80%" alt="Aashita's work">
+  <img src="info/aashita.png" width="80%" alt="Aashita's work">
 </p>
 
 **What you're doing in simple words:**
@@ -34,7 +34,7 @@ Files come in messy — some are duplicated, some are broken/corrupted. Your job
 ## Aditi — Reading Text From Images (OCR)
 
 <p align="center">
-  <img src="timeline/schedule/aditi.png" width="80%" alt="Aditi's work">
+  <img src="info/aditi.png" width="80%" alt="Aditi's work">
 </p>
 
 **What you're doing in simple words:**
@@ -51,7 +51,7 @@ Some reports are scanned images or photos, not typed text — a computer can't "
 ## Ankit — Storing Everything (Storage & Warehouse)
 
 <p align="center">
-  <img src="timeline/schedule/ankit.png" width="80%" alt="Ankit's work">
+  <img src="info/ankit.png" width="80%" alt="Ankit's work">
 </p>
 
 **What you're doing in simple words:**
@@ -70,7 +70,7 @@ Once files are cleaned and readable, they need a home. You store the actual raw 
 ## Anant — Scoring How Important Each File Is (Analytics & Priority)
 
 <p align="center">
-  <img src="timeline/schedule/anant.png" width="80%" alt="Anant's work">
+  <img src="info/anant.png" width="80%" alt="Anant's work">
 </p>
 
 **What you're doing in simple words:**
@@ -87,7 +87,7 @@ Not every file is equally important. A report opened 50 times this week matters 
 ## Arpit — Turning Text Into Numbers (Embeddings & Math)
 
 <p align="center">
-  <img src="timeline/schedule/arpit.png" width="80%" alt="Arpit's work">
+  <img src="info/arpit.png" width="80%" alt="Arpit's work">
 </p>
 
 **What you're doing in simple words:**
@@ -104,7 +104,7 @@ Computers can't compare meaning in plain text directly — so you convert each c
 ## Ansh — Building the Boxes & Search (Clustering)
 
 <p align="center">
-  <img src="timeline/schedule/ansh.png" width="80%" alt="Ansh's work">
+  <img src="info/ansh.png" width="80%" alt="Ansh's work">
 </p>
 
 **What you're doing in simple words:**
