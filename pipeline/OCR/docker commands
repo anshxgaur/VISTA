@@ -1,0 +1,80 @@
+for powershell:
+
+docker run -d --name minio-local -p 9000:9000 -p 9001:9001 -e "MINIO_ROOT_USER=minioadmin" -e "MINIO_ROOT_PASSWORD=minioadmin" minio/minio server /data --console-address ":9001"
+
+docker ps
+
+Open your browser and go to:
+http://localhost:9001
+
+Log in using:
+
+Username: minioadmin
+
+Password: minioadmin
+
+
+
+# Create project directory
+mkdir vista-pipeline
+cd vista-pipeline
+
+# Create Python virtual environment
+python -m venv venv
+
+# Activate virtual environment in PowerShell
+.\venv\Scripts\Activate.ps1
+
+# Install required dependencies
+pip install fastapi uvicorn boto3 python-multipart
+
+
+
+  
+
+#python script
+
+import uuid
+import boto3
+from fastapi import FastAPI, UploadFile, File, HTTPException
+
+app = FastAPI(title="Vista Ingestion Service")
+
+# Connect to your local MinIO container
+s3_client = boto3.client(
+    's3',
+    endpoint_url='http://localhost:9000',
+    aws_access_key_id='minioadmin',
+    aws_secret_access_key='minioadmin'
+)
+
+BUCKET_NAME = "raw-report"
+
+@app.post("/upload")
+async def upload_report(file: UploadFile = File(...)):
+    # Generate a unique ID for this execution/file
+    upload_id = str(uuid.uuid4())
+    file_extension = file.filename.split('.')[-1]
+    stored_filename = f"{upload_id}.{file_extension}"
+
+    try:
+        # Stream file directly into local MinIO bucket
+        s3_client.upload_fileobj(
+            file.file,
+            BUCKET_NAME,
+            stored_filename,
+            ExtraArgs={"ContentType": file.content_type}
+        )
+        
+        return {
+            "status": "SUCCESS",
+            "upload_id": upload_id,
+            "original_name": file.filename,
+            "storage_path": f"{BUCKET_NAME}/{stored_filename}"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

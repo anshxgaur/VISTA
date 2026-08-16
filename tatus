@@ -1,0 +1,64 @@
+ .gitignore                                     |  29 [32m++[m
+ pipeline/OCR/api/upload.py                     | 253 [32m+++++++++++++++[m
+ pipeline/OCR/app/main.py                       |  10 [32m+[m
+ pipeline/OCR/cleaning/chunk_worker.py          |  39 [32m+++[m
+ pipeline/OCR/cleaning/cleaner.py               |  93 [32m++++++[m
+ pipeline/OCR/cleaning/duckdb_cleaner.py        |  32 [32m++[m
+ pipeline/OCR/cleaning/duplicate.py             |  11 [32m+[m
+ pipeline/OCR/cleaning/masking.py               |  37 [32m+++[m
+ pipeline/OCR/cleaning/normalize.py             |  18 [32m++[m
+ pipeline/OCR/cleaning/standardize.py           |  52 [32m+++[m
+ pipeline/OCR/cleaning/validate.py              |  69 [32m++++[m
+ pipeline/OCR/config.py                         |  27 [32m++[m
+ pipeline/OCR/content                           |   1 [32m+[m
+ pipeline/OCR/dashboard.html                    | 430 [32m+++++++++++++++++++++++++[m
+ pipeline/OCR/docker commands                   |  80 [32m+++++[m
+ pipeline/OCR/ingestion/kafka_consumer.py       | 170 [32m++++++++++[m
+ pipeline/OCR/ingestion/kafka_producer.py       |  48 [32m+++[m
+ pipeline/OCR/ingestion/metadata.py             |  72 [32m+++++[m
+ pipeline/OCR/ingestion/minio_client.py         |  12 [32m+[m
+ pipeline/OCR/ingestion/upload_service.py       | 251 [32m+++++++++++++++[m
+ pipeline/OCR/ingestion/uploader.py             |   9 [32m+[m
+ pipeline/OCR/main.py                           | 354 [32m++++++++++++++++++++[m
+ pipeline/OCR/models/schema.py                  |  23 [32m++[m
+ pipeline/OCR/preprocessing/__init__.py         |   0
+ pipeline/OCR/preprocessing/csv_chunk_reader.py |  12 [32m+[m
+ pipeline/OCR/preprocessing/csv_reader.py       |  10 [32m+[m
+ pipeline/OCR/preprocessing/dataset_detector.py |  30 [32m++[m
+ pipeline/OCR/preprocessing/file_detector.py    |  34 [32m++[m
+ pipeline/OCR/preprocessing/folder_scanner.py   |  31 [32m++[m
+ pipeline/OCR/preprocessing/image_reader.py     |  13 [32m+[m
+ pipeline/OCR/preprocessing/json_reader.py      |   7 [32m+[m
+ pipeline/OCR/preprocessing/ocr_reader.py       |  49 [32m+++[m
+ pipeline/OCR/preprocessing/ocr_structurer.py   | 419 [32m++++++++++++++++++++++++[m
+ pipeline/OCR/preprocessing/pdf_reader.py       |  62 [32m++++[m
+ pipeline/OCR/preprocessing/pdf_to_image.py     |  11 [32m+[m
+ pipeline/OCR/preprocessing/process_folder.py   |  51 [32m+++[m
+ pipeline/OCR/preprocessing/scanned_pdf.py      |  14 [32m+[m
+ pipeline/OCR/preprocessing/text_extractor.py   |  31 [32m++[m
+ pipeline/OCR/preprocessing/txt_reader.py       |   6 [32m+[m
+ pipeline/OCR/requirements.txt                  | Bin [31m0[m -> [32m2694[m bytes
+ pipeline/OCR/settings.py                       |   0
+ pipeline/OCR/storage/minio_storage.py          | 276 [32m++++++++++++++++[m
+ pipeline/OCR/test_duckdb.py                    |   8 [32m+[m
+ pipeline/OCR/tests/__init__.py                 |   0
+ pipeline/OCR/tests/sample.csv                  |   1 [32m+[m
+ pipeline/OCR/tests/sample.json                 |   0
+ pipeline/OCR/tests/sample.pdf                  |   0
+ pipeline/OCR/tests/sample.png                  | Bin [31m0[m -> [32m61520[m bytes
+ pipeline/OCR/tests/sample.txt                  |   1 [32m+[m
+ pipeline/OCR/tests/test_chunk_reader.py        |  14 [32m+[m
+ pipeline/OCR/tests/test_cleaner.py             |  32 [32m++[m
+ pipeline/OCR/tests/test_detector.py            |   7 [32m+[m
+ pipeline/OCR/tests/test_folder_scanner.py      |  10 [32m+[m
+ pipeline/OCR/tests/test_models.py              |  27 [32m++[m
+ pipeline/OCR/tests/test_ocr.py                 |  18 [32m++[m
+ pipeline/OCR/tests/test_ocr_reader.py          |   5 [32m+[m
+ pipeline/OCR/tests/test_pdf_reader.py          |   0
+ pipeline/OCR/tests/test_process_folder.py      |   5 [32m+[m
+ pipeline/OCR/tests/test_speed.py               |  20 [32m++[m
+ pipeline/OCR/tests/test_storage.py             |  22 [32m++[m
+ pipeline/OCR/tests/test_text_extractor.py      |  32 [32m++[m
+ pipeline/OCR/utils/helper.py                   |   8 [32m+[m
+ pipeline/OCR/utils/logger.py                   |   8 [32m+[m
+ 63 files changed, 3394 insertions(+)
