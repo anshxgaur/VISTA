@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="info/hello.png" alt="VISTA" width="100%">
-</p>
-
 <h1 align="center">VISTA: Vector Intelligent Semantic Search Text Analysis</h1>
 
 <p align="center">
