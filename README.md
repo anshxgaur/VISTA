@@ -32,14 +32,6 @@
 
 </p>
 
-## Architecture
-
-<p align="center">
-  <img src="assets/Gemini_Generated_Image_8luitd8luitd8lui.png" alt="VISTA" width="100%">
-</p>
-
-
-
 ---
 
 ## 📌 Problem Statement
@@ -84,8 +76,10 @@ Doctor ──> Natural Language Query ──> Query Embedding ──> FAISS Box 
 
 ## 🏗️ System Architecture & Workflow
 
+## Architecture
+
 <p align="center">
-  <img src="info/architecture.png" width="100%" alt="VISTA Box-Clustering Semantic Search Architecture">
+  <img src="assets/Gemini_Generated_Image_8luitd8luitd8lui.png" alt="VISTA" width="100%">
 </p>
 
 **The end-to-end pipeline:**
