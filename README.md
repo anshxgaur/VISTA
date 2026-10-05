@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="info/hello.png" alt="VISTA" width="100%">
+  <img src="assets/hello.png" alt="VISTA" width="100%">
 </p>
 
 <h1 align="center">VISTA: Vector Intelligent Semantic Search Text Analysis</h1>
@@ -31,6 +31,14 @@
 | **5,000+** | **40+** | **384-D** | **< 2 sec** | **95%** |
 
 </p>
+
+## Roadmap
+
+<p align="center">
+  <img src="assets/architecture.png" alt="VISTA" width="100%">
+</p>
+
+
 
 ---
 
