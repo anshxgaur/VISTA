@@ -32,7 +32,7 @@
 
 </p>
 
-## Roadmap
+## Architecture
 
 <p align="center">
   <img src="assets/Gemini_Generated_Image_8luitd8luitd8lui.png" alt="VISTA" width="100%">
