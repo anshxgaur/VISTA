@@ -35,7 +35,7 @@
 ## Roadmap
 
 <p align="center">
-  <img src="assets/architecture.png" alt="VISTA" width="100%">
+  <img src="assets/Gemini_Generated_Image_8luitd8luitd8lui.png" alt="VISTA" width="100%">
 </p>
 
 
