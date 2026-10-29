@@ -24,3 +24,13 @@ services:
         value: "true"
       - key: EMBEDDING_DEVICE
         value: cpu
+
+  - type: web
+    name: vista-frontend
+    runtime: node
+    rootDir: Frontend/Next
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start -- -p $PORT -H 0.0.0.0
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        sync: false
